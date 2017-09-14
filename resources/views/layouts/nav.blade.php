@@ -6,6 +6,7 @@
         <li><a href="">Studios</a></li>
         <li><a href="">Bookings</a></li>
         <li><a href="">Users</a></li>
+        {{--  <li><a href="">{{ Auth::user()->name }}</a></li>  --}}
       </ul>
     </div>
 </nav>
