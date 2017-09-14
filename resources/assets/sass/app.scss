@@ -1,9 +1,23 @@
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+/* Materialize css sticky footer method */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+main {
+   flex: 1 0 auto;
+   background-color: none;
+}
 
-// Variables
-@import "variables";
-
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+.colorama{
+  ul{
+    li{
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      color: white;
+      padding: 25px 10px;
+    }
+  }
+}
