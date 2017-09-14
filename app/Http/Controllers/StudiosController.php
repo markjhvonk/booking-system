@@ -10,17 +10,17 @@ class StudiosController extends Controller
     {
         $studios = Studio::latest()->get();
         
-        return view('studios.index', compact('studios'));
+        return view('admin.studios.index', compact('studios'));
     }
 
     public function studio(Studio $studio)
     {
-        return view('studios.studio', compact('studio'));
+        return view('admin.studios.studio', compact('studio'));
     }
 
     public function create()
     {
-        return view('studios.create');
+        return view('admin.studios.create');
     }
 
     public function store()
