@@ -8,7 +8,7 @@ class StudiosController extends Controller
 {
     public function index()
     {
-        $studios = Studio::all();
+        $studios = Studio::latest()->get();
         
         return view('studios.index', compact('studios'));
     }
@@ -27,8 +27,16 @@ class StudiosController extends Controller
     {
         // dd(request()->all()); // dump & display submitted data
 
-        //create new studio using the request data
-        $studio = new studio;
+        $this->validate(request(), [
+            'name'          => 'required|unique:studios,name',
+            'info'          => 'required',
+            'specs'         => 'required',
+            'cover_photo'   => '',
+            'photos'        => '',
+            'location'      => 'required',
+            'assistance'    => ''
+            
+        ]);
 
         // gather data and add it to the database
         studio::create(request(['name', 'info', 'specs', 'cover_photo', 'photos', 'location', 'assistance']));
