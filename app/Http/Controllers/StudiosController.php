@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\studio;
+use Illuminate\Http\Request;
 
 class StudiosController extends Controller
 {
@@ -43,5 +44,25 @@ class StudiosController extends Controller
 
         //then redirect to the home page
         return redirect('/admin/studios');
+    }
+
+    public function edit(Studio $studio){
+        return view('admin.studios.edit', compact('studio'));
+    }
+
+    public function update(Request $request, Studio $studio){
+        // dd(request()->all()); // dump & display submitted data
+
+        $studio->name = $request->name;
+        $studio->info = $request->info; 
+        $studio->specs = $request->specs; 
+        $studio->cover_photo = $request->coverPhoto; 
+        $studio->photos = $request->photos; 
+        $studio->location = $request->location; 
+        $studio->assistance = $request->assistance;
+
+        $studio->save();
+
+        return back();
     }
 }
