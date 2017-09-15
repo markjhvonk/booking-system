@@ -1,6 +1,17 @@
 @extends ('layouts.master')
 
 @section ('content')
+     <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" href="">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">mode_edit</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">visibility</i></a></li>
+            {{--  <li><a class="btn-floating green"><i class="material-icons">visibility_off</i></a></li>  --}}
+            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+        </ul>
+    </div>
     <div class="row">
         <h1>{{$studio->name}}</h1>
     </div>
