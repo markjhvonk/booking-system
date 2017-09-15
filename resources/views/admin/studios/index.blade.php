@@ -5,6 +5,11 @@
         <h1>Studios</h1>
     </div>
     <div class="row">
+        <div class="col s12 m12">
+            <a class="waves-effect waves-light btn" href="/admin/studios/create">new studio</a>
+        </div>
+    </div>
+    <div class="row">
         
     @foreach ($studios as $studio)
 
