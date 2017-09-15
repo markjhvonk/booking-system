@@ -17,6 +17,12 @@ class UsersController extends Controller
         return view('admin.users.create');
     }
 
+    public function setPassword($password)
+    {
+        $this->password = bcrypt($password);
+        return $this;
+    }
+
     public function store()
     {
         // Validate the form
@@ -26,8 +32,9 @@ class UsersController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        // Create and save the user
-        $user = User::create(request(['name', 'email', 'password']));
+        $user = User::create(request(['name', 'email', 'password'])); //added bcrypt around password for encryption
+        $user->password = bcrypt($user->password);
+        $user->save();
 
         // Sign them in? Not for these users!
         // auth()->login($user);
