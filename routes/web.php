@@ -12,6 +12,7 @@ Route::get('/admin/studios/create', 'StudiosController@create');        // creat
 Route::post('/admin/studios', 'StudiosController@store');               // submit new studio
 Route::get('/admin/studios/{studio}/edit', 'StudiosController@edit');   // edit specific studio
 Route::patch('/admin/studios/{studio}', 'StudiosController@update');     // update specific studio
+Route::delete('/admin/studios/{studio}', 'StudiosController@delete');     // update specific studio
 
 Route::get('/admin/users', 'UsersController@index');
 Route::get('/admin/users/register', 'UsersController@create');

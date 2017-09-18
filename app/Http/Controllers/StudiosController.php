@@ -26,8 +26,6 @@ class StudiosController extends Controller
 
     public function store()
     {
-        // dd(request()->all()); // dump & display submitted data
-
         $this->validate(request(), [
             'name'          => 'required|unique:studios,name',
             'info'          => 'required',
@@ -51,8 +49,6 @@ class StudiosController extends Controller
     }
 
     public function update(Request $request, Studio $studio){
-        // dd(request()->all()); // dump & display submitted data
-
         $studio->name = $request->name;
         $studio->info = $request->info; 
         $studio->specs = $request->specs; 
@@ -64,5 +60,12 @@ class StudiosController extends Controller
         $studio->save();
 
         return back();
+    }
+
+    public function delete(Request $request, Studio $studio){
+        
+        $studio->delete();
+
+        return redirect('/admin/studios');
     }
 }
