@@ -5,7 +5,7 @@
         <h1>Register new user</h1>
     </div>
     <div class="row">
-        <form method="POST" action="../users" class="col s12">
+        <form method="POST" action="{{ url('admin/users') }}" class="col s12">
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col s6">

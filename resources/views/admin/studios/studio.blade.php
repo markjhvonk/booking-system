@@ -6,10 +6,10 @@
             <i class="large material-icons">mode_edit</i>
         </a>
         <ul>
-            <li><a class="btn-floating yellow darken-1" href="../../admin/studios/{{ $studio->id }}/edit"><i class="material-icons">mode_edit</i></a></li>
+            <li><a class="btn-floating yellow darken-1" href="{{ url('admin/studios',$studio->id) }}/edit"><i class="material-icons">mode_edit</i></a></li>
             <li><a class="btn-floating green"><i class="material-icons">visibility</i></a></li>
             {{--  <li><a class="btn-floating green"><i class="material-icons">visibility_off</i></a></li>  --}}
-            <form method="POST" action="../../admin/studios/{{$studio->id}}">
+            <form method="POST" action="{{ url('admin/studios',$studio->id) }}">
                 {{ method_field('DELETE') }}
                 {{ csrf_field() }}
                 <li><button type="submit" class="btn-floating red"><i class="material-icons">delete</i></button></li>

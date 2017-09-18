@@ -4,7 +4,7 @@
     <div class="row">
         <h1>Edit: {{$studio->name}}</h1>
     </div>
-    <form method="POST" action="../../studios/{{$studio->id}}" class="col s12">
+    <form method="POST" action="{{ url('admin/studios',$studio->id) }}" class="col s12">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
         <div class="fixed-action-btn">
@@ -53,7 +53,7 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-image">
-                        <img src="../../../media/sample-1.jpg">
+                        <img src="/media/sample-1.jpg">
                         {{--  <span class="card-title">Card Title</span>  --}}
                     </div>   
                     <div class="file-field input-field col s12">
@@ -72,27 +72,27 @@
                 <div class="row">
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-image"><img src="../../../media/sample-1.jpg"></div>
+                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
                         </div>
                     </div>
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-image"><img src="../../../media/sample-1.jpg"></div>
+                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
                         </div>
                     </div>
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-image"><img src="../../../media/sample-1.jpg"></div>
+                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
                         </div>
                     </div>
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-image"><img src="../../../media/sample-1.jpg"></div>
+                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
                         </div>
                     </div>
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-image"><img src="../../../media/sample-1.jpg"></div>
+                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
                         </div>
                     </div>
                 </div>

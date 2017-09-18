@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         <div class="col s12 m12">
-            <a class="waves-effect waves-light btn" href="/admin/studios/create">new studio</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/studios/create') }}">new studio</a>
         </div>
     </div>
     <div class="row">
@@ -20,7 +20,7 @@
                     <p>{{ $studio->info }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="/admin/studios/{{ $studio->id }}">View</a>
+                    <a href="{{ url('admin/studios',$studio->id) }}">View</a>
                 </div>
             </div>
         </div>
