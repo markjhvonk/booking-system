@@ -22,7 +22,9 @@
     <div class="row">
         <p>{{$studio->info}}</p>
     </div>
-    <div class="row">
+    
+    {{-- old relation stuff --}}
+    {{--  <div class="row">
         <h3>Equimpent kits</h3>
         <ul>
             @foreach ($studio->equipmentKits as $equipment)
@@ -66,7 +68,7 @@
             </li>
             @endforeach
         </ul>
-    </div>
+    </div>  --}}
 @endsection
 
 @section ('footer')

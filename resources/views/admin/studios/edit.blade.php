@@ -149,7 +149,9 @@
                 </div>
             </div>
         </div>
-    </form>
+        
+    {{-- old table relation stuff --}}
+    {{--  </form>
     
     <div class="row">
         <div class="divider"></div>
@@ -199,7 +201,7 @@
             </li>
             @endforeach
         </ul>
-    </div>
+    </div>  --}}
 @endsection
 
 @section ('footer')
