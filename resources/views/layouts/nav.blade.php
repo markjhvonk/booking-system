@@ -4,6 +4,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{{ url('/admin') }}">Home</a></li>
         <li><a href="{{ url('/admin/studios') }}">Studios</a></li>
+        <li><a href="{{ url('/admin/equipment') }}">Equipment</a></li>
         <li><a href="">Bookings</a></li>
         <li><a href="{{ url('/admin/users') }}">Users</a></li>
         
