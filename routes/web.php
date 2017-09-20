@@ -14,6 +14,8 @@ Route::get('/admin/studios/{studio}/edit', 'StudiosController@edit');   // edit 
 Route::patch('/admin/studios/{studio}', 'StudiosController@update');    // update specific studio
 Route::delete('/admin/studios/{studio}', 'StudiosController@delete');   // delete specific studio
 
+Route::get('/admin/equipment', 'EquipmentController@index');
+
 Route::get('/admin/users', 'UsersController@index');
 Route::get('/admin/users/register', 'UsersController@create');
 Route::post('/admin/users', 'UsersController@store');
