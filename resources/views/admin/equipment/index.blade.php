@@ -6,26 +6,35 @@
     </div>
     <div class="row">
         <div class="col s12 m12">
-            <a class="waves-effect waves-light btn" href="{{ url('admin/studios/create') }}">new equipment</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create') }}">new equipment</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create-category') }}">new category</a>
         </div>
     </div>
     <div class="row">
         
-    @foreach ($equipment as $equipment)
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Data</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
 
-        <div class="col s12 m4">
-            <div class="card medium blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">{{ $equipment->name }}</span>
-                    <p>{{ $studio->info }}</p>
-                </div>
-                <div class="card-action">
-                    <a href="{{ url('admin/studios',$equipment->id) }}">View</a>
-                </div>
-            </div>
-        </div>
-
-    @endforeach
+            <tbody>
+            @foreach ($equipment as $equipment)
+                <tr>
+                    <td>{{ $equipment->name }}</td>
+                    <td>{{ $equipment->description }}</td>
+                    <td>{{ $equipment->data }}</td>
+                    <td>{{ $equipment->price }}</td>
+                    <td>{{ $equipment->category->name }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
 
     </div>
 
