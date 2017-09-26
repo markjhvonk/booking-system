@@ -10,6 +10,34 @@
             <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create-category') }}">new category</a>
         </div>
     </div>
+
+    
+    {{--  Category test  --}}
+    <div class="row">
+        <ul>
+            @foreach ($categories as $category)
+                <li>{{ $category->name }}</li>
+            @endforeach
+        </ul>
+    </div>
+
+
+    {{--  Tab test  --}}
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+            @foreach ($categories as $category)
+                <li class="tab col s3">
+                    <a target="_self" href="{{ url('admin/equipment',$category->id) }}">{{ $category->name }}</a>
+                </li>
+                {{--  {{ str_replace(' ', '_', $category->name) }}  --}}
+            @endforeach
+            </ul>
+        </div>
+    </div>
+
+
+    {{--  Working code  --}}
     <div class="row">
         
         <table class="striped">
