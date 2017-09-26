@@ -48,16 +48,20 @@ class StudiosController extends Controller
         return view('admin.studios.edit', compact('studio'));
     }
 
-    public function update(Request $request, Studio $studio){
-        $studio->name = $request->name;
-        $studio->info = $request->info; 
-        $studio->specs = $request->specs; 
-        $studio->cover_photo = $request->coverPhoto; 
-        $studio->photos = $request->photos; 
-        $studio->location = $request->location; 
-        $studio->assistance = $request->assistance;
+    public function update(Request $request, Studio $studio)
+    {
+        
+        $this->validate(request(),[
+            'name'          => 'required|unique:studios,name,'.$studio->id,
+            'info'          => 'required',
+            'specs'         => 'required',
+            'cover_photo'   => '',
+            'location'      => 'required',
+            'assistance'    => ''
+            
+        ]);
 
-        $studio->save();
+        $studio->update($request->all());
 
         return back();
     }
