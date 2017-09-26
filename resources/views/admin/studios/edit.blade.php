@@ -16,7 +16,7 @@
             <h4>General info</h4>
         </div>
         <div class="row">
-         <table>
+         {{--  <table>
              <tr>
                  <td><b>Created:</b></td>
                  <td>{{ $studio->created_at->toFormattedDateString() }}</td>
@@ -25,7 +25,7 @@
                  <td><b>Last updated:</b></td>
                  <td>{{ $studio->updated_at->toFormattedDateString() }}</td>
              </tr>
-         </table>
+         </table>  --}}
              
         </div>
         <div class="row">
@@ -149,9 +149,12 @@
                 </div>
             </div>
         </div>
-        
+        <div class="row">
+            @include ('layouts.errors')
+        </div>
+    </form>
     {{-- old table relation stuff --}}
-    {{--  </form>
+    {{--  
     
     <div class="row">
         <div class="divider"></div>
