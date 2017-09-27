@@ -10,19 +10,9 @@
             <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create-category') }}">new category</a>
         </div>
     </div>
-    {{--  Category test  --}}
-    <div class="row">
-        <ul>
-            @foreach ($categories as $category)
-                <li>{{ $category->name }}</li>
-            @endforeach
-        </ul>
-    </div>
-    {{--  Tab test  --}}
-    Current Category data: {{ $current_category }}
     <div class="row">
         <div class="col s12">
-            <ul class="tabs">
+            <ul class="tabs z-depth-1">
             @foreach ($categories as $category)
                 <li class="tab col s3">
                     @if($category->id == $current_category->id)
@@ -31,38 +21,46 @@
                     <a target="_self" href="{{ url('admin/equipment',$category->id) }}">{{ $category->name }}</a>
                     @endif
                 </li>
-                {{--  {{ str_replace(' ', '_', $category->name) }}  --}}
             @endforeach
             </ul>
         </div>
     </div>
-    {{--  Working code  --}}
     <div class="row">
-        
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Data</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
+        <div class="col s12">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Data</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-            <tbody>
-            @foreach ($equipment as $equipment)
-                <tr>
-                    <td>{{ $equipment->name }}</td>
-                    <td>{{ $equipment->description }}</td>
-                    <td>{{ $equipment->data }}</td>
-                    <td>{{ $equipment->price }}</td>
-                    <td>{{ $equipment->category->name }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-
+                <tbody>
+                @foreach ($equipment as $equipment)
+                    <tr>
+                        <td>{{ $equipment->name }}</td>
+                        <td>{{ $equipment->description }}</td>
+                        <td>{{ $equipment->data }}</td>
+                        <td>{{ $equipment->price }}</td>
+                        <td>{{ $equipment->category->name }}</td>
+                        <td class="right-align">
+                            <a class="blue-text" href="{{ url('admin/equipment',$category->id) }}/edit"><i class="material-icons">edit</i></a>
+                            <form method="POST" action="{{ url('admin/equipment',$equipment->id) }}" style="display: inline-block;">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="red-text clear-btn" type="submit"><i class="material-icons">delete</i></button>
+                            </form>
+                            <a class="green-text" href=""><i class="material-icons">visibility</i></a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
 @endsection
