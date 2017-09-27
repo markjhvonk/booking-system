@@ -18,10 +18,13 @@ Route::patch('/admin/studios/{studio}', 'StudiosController@update');    // updat
 Route::delete('/admin/studios/{studio}', 'StudiosController@delete');   // delete specific studio
 
 // Equipment related routing
-Route::get('/admin/equipment', 'EquipmentController@index');
-Route::get('/admin/equipment/create', 'EquipmentController@create');
-Route::post('/admin/equipment', 'EquipmentController@store');
-Route::get('/admin/equipment/{current_category}', 'EquipmentController@category');
+Route::get('/admin/equipment', 'EquipmentController@index');                            // dashboard
+Route::get('/admin/equipment/create', 'EquipmentController@create');                    // create equipment item
+Route::post('/admin/equipment', 'EquipmentController@store');                           // submit equipment item
+Route::get('/admin/equipment/{equipment}/edit', 'EquipmentController@edit');            // edit equipment item
+Route::patch('/admin/equipment/{equipment}', 'EquipmentController@update');             // update equipment item
+Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');            // delete equipment item
+Route::get('/admin/equipment/{current_category}', 'EquipmentController@category');      // display all equipment items from selected category
 
 // User related routing
 Route::get('/admin/users', 'UsersController@index');
