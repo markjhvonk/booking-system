@@ -36,6 +36,26 @@
         </div>
     </div>
 
+    {{--  Testing packages  --}}
+    <div class="row">
+        @foreach ($packages as $package)
+        <div class="col s6 m4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ $package->name }}</span>
+                    <p>{{ $package->description }}</p>
+                    <div class="divider"></div>
+                    <ul>
+                        @foreach ($package->equipment as $packageEquipment)
+                        <li>{{ $packageEquipment->name}}</li>
+                        @endforeach
+                    </ul>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+        </div>
+        @endforeach    
+    </div>
 
     {{--  Working code  --}}
     <div class="row">
