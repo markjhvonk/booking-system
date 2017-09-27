@@ -18,9 +18,9 @@ class EquipmentController extends Controller
 
     public function create()
     {
-        // $equipment = Equipment::latest()->get();
+        $categories = Category::get();
         
-        return view('admin.equipment.create');
+        return view('admin.equipment.create', compact('categories'));
     }
 
     public function store()
@@ -29,12 +29,13 @@ class EquipmentController extends Controller
             'name'          => 'required|unique:equipment,name',
             'description'   => '',
             'data'          => '',
-            'price'         => ''
+            'price'         => '',
+            'category_id'   => ''
             
         ]);
 
         // gather data and add it to the database
-        equipment::create(request(['name', 'description', 'data', 'price']));
+        equipment::create(request(['name', 'description', 'data', 'price', 'category_id']));
 
         //then redirect to the home page
         return redirect('/admin/equipment');
@@ -47,4 +48,35 @@ class EquipmentController extends Controller
         
         return view('admin.equipment.category', compact('equipment','categories','current_category'));
     }
+
+    public function edit(Equipment $equipment)
+    {        
+        $categories = Category::get();
+        return view('admin.equipment.edit', compact('equipment', 'categories'));
+    }
+
+    public function update(Request $request, Equipment $equipment)
+    {
+        
+        $this->validate(request(),[
+            'name'          => 'required|unique:equipment,name,'.$equipment->id,
+            'description'   => '',
+            'data'          => '',
+            'price'         => '',
+            'category_id'   => ''
+            
+        ]);
+
+        $equipment->update($request->all());
+
+        return back();
+    }
+
+    public function delete(Request $request, Equipment $equipment)
+    {        
+        $equipment->delete();
+        return back();
+    }
+
+
 }
