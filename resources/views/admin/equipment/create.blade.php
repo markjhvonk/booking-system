@@ -34,11 +34,11 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <select>
-                        <option value="" disabled selected>Categories:</option>
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
+                    <select name="category_id">
+                        <option value="" disabled selected>Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                     <label>Category</label>
                 </div>
