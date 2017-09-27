@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\equipment;
 use App\category;
+use App\package;
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
@@ -12,8 +13,9 @@ class EquipmentController extends Controller
     {
         $categories = Category::get();
         $equipment = Equipment::latest()->get();
+        $packages = Package::latest()->get();
         
-        return view('admin.equipment.index', compact('equipment','categories'));
+        return view('admin.equipment.index', compact('equipment','categories','packages'));
     }
 
     public function create()
@@ -44,9 +46,10 @@ class EquipmentController extends Controller
     public function category(Category $current_category)
     {
         $equipment = Equipment::get()->where('category_id', $current_category->id);
+        $packages = Package::get()->where('category_id', $current_category->id);
         $categories = Category::get();
         
-        return view('admin.equipment.category', compact('equipment','categories','current_category'));
+        return view('admin.equipment.category', compact('equipment','packages','categories','current_category'));
     }
 
     public function edit(Equipment $equipment)
