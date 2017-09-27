@@ -26,3 +26,8 @@ main {
   padding: 25px 10px;
 }
 
+.clear-btn {
+  background-color: transparent;
+  border: none;
+}
+
