@@ -26,6 +26,13 @@ Route::patch('/admin/equipment/{equipment}', 'EquipmentController@update');     
 Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');            // delete equipment item
 Route::get('/admin/equipment/{current_category}', 'EquipmentController@category');      // display all equipment items from selected category
 
+Route::get('/admin/equipment/packages/create', 'PackagesController@create');            // create package
+Route::post('/admin/equipment/packages', 'PackagesController@store');                   // submit package
+Route::get('/admin/equipment/packages/{package}', 'PackagesController@package');        // display package
+Route::get('/admin/equipment/packages/{package}/edit', 'PackagesController@edit');      // edit package
+Route::patch('/admin/equipment/packages/{package}', 'PackagesController@update');       // update package
+Route::delete('/admin/equipment/packages/{package}', 'PackagesController@delete');      // delete package
+
 // User related routing
 Route::get('/admin/users', 'UsersController@index');
 Route::get('/admin/users/register', 'UsersController@create');
