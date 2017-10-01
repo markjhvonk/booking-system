@@ -8,14 +8,11 @@
       <li><a href="">Bookings</a></li>
       <li><a href="{{ url('/admin/users') }}">Users</a></li>
       <li>
-      {{--  Check if user is logged in or not --}}
-        @if (Auth::check())
-        <a href="{{ url('admin/logout') }}">
-            {{ Auth::user()->name }}
-          </a> @else
-        <a href="{{ url('admin/login') }}">
-            Login
-          </a> @endif
+        @auth
+        <a href="{{ url('admin/logout') }}">{{ Auth::user()->name }}</a> 
+        @else
+        <a href="{{ url('admin/login') }}">Login</a> 
+        @endauth
       </li>
     </ul>
   </div>
