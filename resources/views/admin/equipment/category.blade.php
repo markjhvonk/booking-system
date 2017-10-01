@@ -12,8 +12,8 @@
     </div>
     <div class="row">
         <div class="col s12 m12">
-            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create') }}">new equipment</a>
-            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/package/create') }}">new kit</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create',$current_category->id) }}">new equipment</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/package/create',$current_category->id) }}">new kit</a>
             <form method="POST" action="{{ url('admin/equipment/category',$current_category->id) }}" class="right" style="display: inline-block; margin: 0 0 0 5px">
                 {{ method_field('DELETE') }} {{ csrf_field() }}
                 <button class="waves-effect waves-light btn red">delete</button>
