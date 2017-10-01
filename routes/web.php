@@ -26,6 +26,14 @@ Route::patch('/admin/equipment/{equipment}', 'EquipmentController@update');     
 Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');            // delete equipment item
 Route::get('/admin/equipment/{current_category}', 'EquipmentController@category');      // display all equipment items from selected category
 
+// Category related routing
+Route::get('/admin/equipment/category/create', 'CategoryController@create');            // create category
+Route::post('/admin/equipment/category', 'CategoryController@store');                   // submit category
+Route::get('/admin/equipment/category/{category}/edit', 'CategoryController@edit');     // edit category
+Route::patch('/admin/equipment/category/{category}', 'CategoryController@update');      // update category
+Route::delete('/admin/equipment/category/{category}', 'CategoryController@delete');     // delete category
+
+// Packages related routing
 Route::get('/admin/equipment/packages/create', 'PackagesController@create');            // create package
 Route::post('/admin/equipment/packages', 'PackagesController@store');                   // submit package
 Route::get('/admin/equipment/packages/{package}', 'PackagesController@package');        // display package
@@ -34,14 +42,14 @@ Route::patch('/admin/equipment/packages/{package}', 'PackagesController@update')
 Route::delete('/admin/equipment/packages/{package}', 'PackagesController@delete');      // delete package
 
 // User related routing
-Route::get('/admin/users', 'UsersController@index');
-Route::get('/admin/users/register', 'UsersController@create');
-Route::post('/admin/users', 'UsersController@store');
+Route::get('/admin/users', 'UsersController@index');            // display all users
+Route::get('/admin/users/register', 'UsersController@create');  // create new user
+Route::post('/admin/users', 'UsersController@store');           // submit new user
 
 // Login routing
-Route::get('/admin/login', 'SessionsController@create');
-Route::post('/admin/login', 'SessionsController@store');
-Route::get('/admin/logout', 'SessionsController@destroy');
+Route::get('/admin/login', 'SessionsController@create');        // login page
+Route::post('/admin/login', 'SessionsController@store');        // submit login session (log user in)
+Route::get('/admin/logout', 'SessionsController@destroy');      // destroy login session (log user out)
 
 
 /* structure - basic resource controller
