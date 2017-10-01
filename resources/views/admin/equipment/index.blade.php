@@ -7,7 +7,8 @@
     <div class="row">
         <div class="col s12 m12">
             <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create') }}">new equipment</a>
-            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create-category') }}">new category</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/category/create') }}">new category</a>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/packages/create') }}">new kit</a>
         </div>
     </div>
 
