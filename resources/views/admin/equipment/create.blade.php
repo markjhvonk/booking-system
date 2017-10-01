@@ -3,7 +3,16 @@
 @section ('content')
     <div class="row">
         <h1>New Equipment</h1>
-        <div class="divider"></div>
+    </div>
+    <div class="row">
+        <div class="col s12 red-text">
+            <a href="{{ url('admin/equipment') }}" class="breadcrumb grey-text lighten-1">Categories</a>
+            {{--  find out why this doesnt just work with @isset($current_category)!  --}}
+            @if($current_category->name != null)
+                <a href="{{ url('admin/equipment',$current_category->id) }}" class="breadcrumb grey-text lighten-1">{{ $current_category->name }}</a>
+            @endif
+            <a href="#!" class="breadcrumb red-text">create</a>
+        </div>
     </div>
     <div class="row">
         <form method="POST" action="{{ url('admin/equipment') }}" class="col s12">
@@ -37,7 +46,11 @@
                     <select name="category_id">
                         <option value="" disabled selected>Select Category</option>
                         @foreach ($categories as $category)
+                            @if($current_category && $current_category->id == $category->id)
+                            <option selected value="{{ $current_category->id }}">{{ $current_category->name }}</option>
+                            @else
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <label>Category</label>
