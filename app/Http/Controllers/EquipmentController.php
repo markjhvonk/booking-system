@@ -18,11 +18,11 @@ class EquipmentController extends Controller
         return view('admin.equipment.index', compact('equipment','categories','packages'));
     }
 
-    public function create()
+    public function create(Category $current_category)
     {
         $categories = Category::get();
         
-        return view('admin.equipment.create', compact('categories'));
+        return view('admin.equipment.create', compact('categories','current_category'));
     }
 
     public function store()
