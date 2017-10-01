@@ -2,28 +2,23 @@
 
 @section ('content')
     <div class="row">
-        <h1>Equipment</h1>
+        <h1>{{ $current_category->name }}</h1>
+    </div>
+    <div class="row">
+        <div class="col s12 red-text">
+            <a href="{{ url('admin/equipment') }}" class="breadcrumb grey-text lighten-1">Categories</a>
+            <a href="#!" class="breadcrumb red-text">{{ $current_category->name }}</a>
+        </div>
     </div>
     <div class="row">
         <div class="col s12 m12">
             <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create') }}">new equipment</a>
-            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/category/create') }}">new category</a>
-            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/package/create') }}">new kit/a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <ul class="tabs z-depth-1">
-            @foreach ($categories as $category)
-                <li class="tab col s3">
-                    @if($category->id == $current_category->id)
-                    <a class="active" target="_self" href="{{ url('admin/equipment',$category->id) }}">{{ $category->name }}</a>
-                    @else
-                    <a target="_self" href="{{ url('admin/equipment',$category->id) }}">{{ $category->name }}</a>
-                    @endif
-                </li>
-            @endforeach
-            </ul>
+            <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/package/create') }}">new kit</a>
+            <form method="POST" action="{{ url('admin/equipment/category',$current_category->id) }}" class="right" style="display: inline-block; margin: 0 0 0 5px">
+                {{ method_field('DELETE') }} {{ csrf_field() }}
+                <button class="waves-effect waves-light btn red">delete</button>
+            </form>
+            <a class="waves-effect waves-light btn right blue" href="{{ url('admin/equipment/category',$current_category->id) }}/edit">edit</a>
         </div>
     </div>
     <div class="row">
@@ -64,12 +59,18 @@
                     @foreach ($equipment as $equipment)
                         <tr>
                             <td>{{ $equipment->name }}</td>
-                            <td>{{ $equipment->description }}</td>
-                            <td>{{ $equipment->data }}</td>
-                            <td>{{ $equipment->price }}</td>
+                            <td class="description truncate">{{ $equipment->description }}</td>
+                            <td>
+                                @if(!$equipment->data)
+                                    N/A
+                                @else
+                                    {{ $equipment->data }}
+                                @endif
+                            </td>
+                            <td>&pound;{{ $equipment->price }}</td>
                             <td>{{ $equipment->category->name }}</td>
                             <td class="right-align">
-                                <a class="blue-text" href="{{ url('admin/equipment',$category->id) }}/edit"><i class="material-icons">edit</i></a>
+                                <a class="blue-text" href="{{ url('admin/equipment',$equipment->id) }}/edit"><i class="material-icons">edit</i></a>
                                 <form method="POST" action="{{ url('admin/equipment',$equipment->id) }}" style="display: inline-block;">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
