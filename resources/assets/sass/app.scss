@@ -10,6 +10,14 @@ main {
    background-color: none;
 }
 
+table{
+  tbody{
+    .description{
+      max-width: 500px;
+    }
+  }
+}
+
 .colorama{
   ul{
     li{
@@ -25,4 +33,11 @@ main {
 .clear-btn{
   background-color: transparent;
   border: none;
+}
+
+.breadcrumb{
+  &:before{
+    color: #9e9e9e;
+    margin-top: -5px;
+  }
 }
