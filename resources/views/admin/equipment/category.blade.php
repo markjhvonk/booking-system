@@ -35,7 +35,7 @@
                             <li>{{ $packageEquipment->name}}</li>
                             @endforeach
                         </ul>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ url('admin/equipment/package',$package->id) }}/edit"><i class="material-icons">edit</i></a>
                     </div>
                 </div>
             </div>
