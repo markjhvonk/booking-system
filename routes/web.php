@@ -34,12 +34,14 @@ Route::patch('/admin/equipment/category/{category}', 'CategoriesController@updat
 Route::delete('/admin/equipment/category/{category}', 'CategoriesController@delete');   // delete category
 
 // Packages related routing
-Route::get('/admin/equipment/package/create/{current_category?}', 'PackagesController@create');    // create package
-Route::post('/admin/equipment/package/{current_category?}', 'PackagesController@store');           // submit package
-Route::get('/admin/equipment/package/{package}', 'PackagesController@package');                    // display package
-Route::get('/admin/equipment/package/{package}/edit', 'PackagesController@edit');                  // edit package
-Route::patch('/admin/equipment/package/{package}', 'PackagesController@update');                   // update package
-Route::delete('/admin/equipment/package/{package}', 'PackagesController@delete');                  // delete package
+Route::get('/admin/equipment/package/create/{current_category?}', 'PackagesController@create');             // create package
+Route::post('/admin/equipment/package/{current_category?}', 'PackagesController@store');                    // submit package
+Route::get('/admin/equipment/package/{package}', 'PackagesController@package');                             // display package
+Route::get('/admin/equipment/package/{package}/edit', 'PackagesController@edit');                           // edit package
+Route::post('/admin/equipment/package/{package}/add-equipment', 'PackagesController@addEquipment');         // add equipment
+Route::post('/admin/equipment/package/{package}/remove-equipment/{equipment_id}', 'PackagesController@removeEquipment');   // add equipment
+Route::patch('/admin/equipment/package/{package}', 'PackagesController@update');                            // update package
+Route::delete('/admin/equipment/package/{package}', 'PackagesController@delete');                           // delete package
 
 // User related routing
 Route::get('/admin/users', 'UsersController@index');            // display all users
