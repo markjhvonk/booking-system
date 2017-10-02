@@ -30,4 +30,26 @@ class PackagesController extends Controller
         //then redirect to the home page
         return redirect()->route('equipmentCategory', $current_category);
     }
+
+    public function edit(Package $package){
+        $categories = Category::get();
+        $totalPrice = 0;
+        foreach($package->equipment as $equipment){
+            $totalPrice += $equipment['price'];
+        };
+        return view('admin.package.edit', compact('package','categories','totalPrice'));
+    }
+
+    public function update(Request $request, Package $package)
+    {
+        
+        $this->validate(request(),[
+            'name'          => 'required|unique:categories,name,'.$package->id,
+            'description'   => ''
+        ]);
+
+        $package->update($request->all());
+
+        return back();
+    }
 }
