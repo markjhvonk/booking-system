@@ -33,11 +33,19 @@ class PackagesController extends Controller
 
     public function edit(Package $package){
         $categories = Category::get();
+
+        //get all the equipment from same category as package and leave out all the equipment already in the package (creds to Nick)
+        $equipment = Equipment::whereNotIn('id', $package->equipment->pluck('id'))
+                                ->where('category_id',$package->category_id)
+                                ->select('id','name')
+                                ->get();
+        
+
+        //get the total price of all linked equipment
         $totalPrice = 0;
-        foreach($package->equipment as $equipment){
-            $totalPrice += $equipment['price'];
-        };
-        return view('admin.package.edit', compact('package','categories','totalPrice'));
+        foreach($package->equipment as $packageEquipment){ $totalPrice += $packageEquipment['price']; };
+
+        return view('admin.package.edit', compact('package','categories','equipment','totalPrice'));
     }
 
     public function update(Request $request, Package $package)
@@ -49,6 +57,20 @@ class PackagesController extends Controller
         ]);
 
         $package->update($request->all());
+
+        return back();
+    }
+
+    public function addEquipment(Request $request, Package $package)
+    {
+        $package->equipment()->attach($request->equipment_id);
+
+        return back();
+    }
+
+    public function removeEquipment(Request $request, Package $package, Equipment $equipment_id)
+    {
+        $package->equipment()->detach($equipment_id);
 
         return back();
     }
