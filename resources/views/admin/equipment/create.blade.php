@@ -7,8 +7,7 @@
     <div class="row">
         <div class="col s12 red-text">
             <a href="{{ url('admin/equipment') }}" class="breadcrumb grey-text lighten-1">Categories</a>
-            {{--  find out why this doesnt just work with @isset($current_category)!  --}}
-            @if($current_category->name != null)
+            @if($current_category->name)
                 <a href="{{ url('admin/equipment',$current_category->id) }}" class="breadcrumb grey-text lighten-1">{{ $current_category->name }}</a>
             @endif
             <a href="#!" class="breadcrumb red-text">create</a>
