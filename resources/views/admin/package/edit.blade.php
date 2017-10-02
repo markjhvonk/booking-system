@@ -56,7 +56,7 @@
             </div>
         </form>
         <div class="col s12 m6">
-            <table style="height: 200px;">
+            <table class="striped" style="height: 200px;">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -79,7 +79,15 @@
                         @endif
                         </td>
                         <td>&pound;{{ $packageEquipment->price}}</td>
-                        <td></td>
+                        <td>
+                            <form method="POST" action="{{ url('admin/equipment/package',$package->id) }}/remove-equipment/{{ $packageEquipment->id }}"> 
+                                {{ csrf_field() }}
+                                <button type="submit clear-btn">
+                                    <i class="material-icons right red-text">clear</i>
+                                </button>
+                            </form>
+                            
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -93,7 +101,27 @@
                     </tr>
                 </tfoot>
             </table>
+            <div class="row">
+                <form method="POST" action="{{ url('admin/equipment/package',$package->id) }}/add-equipment" class="col s12">
+                    {{ csrf_field() }}
+                    <div class="input-field col s6">
+                        <select name="equipment_id">
+                            <option value="" disabled selected>Equipment:</option>
+                            @foreach ($equipment as $equipmentItem)
+                                <option value="{{ $equipmentItem->id }}">{{ $equipmentItem->name }}</option>
+                            @endforeach
+                        </select>
+                        <label>Category</label>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">
+                        Add item
+                        <i class="material-icons right">add</i>
+                    </button>                
+                </form>
+            </div>
         </div>
+        
+        {{--  {{ $equipment  }}  --}}
 
         {{--  For later equipent add function  --}}
         {{--  <div class="row">
