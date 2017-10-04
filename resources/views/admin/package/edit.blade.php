@@ -16,6 +16,9 @@
         </div>
     </div>
     <div class="row">
+        
+    </div>
+    <div class="row">
         <form method="POST" action="{{ url('admin/equipment/package',$package->id) }}" class="col s12 m6">
             {{ method_field('PATCH') }}
             {{ csrf_field() }}
@@ -33,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <select name="">
+                    <select disabled name="">
                         <option value="" disabled selected>Categories:</option>
                         @foreach ($categories as $category)
                             @if($category->id == $package->category_id)
@@ -82,7 +85,7 @@
                         <td>
                             <form method="POST" action="{{ url('admin/equipment/package',$package->id) }}/remove-equipment/{{ $packageEquipment->id }}"> 
                                 {{ csrf_field() }}
-                                <button type="submit clear-btn">
+                                <button type="submit" class="clear-btn">
                                     <i class="material-icons right red-text">clear</i>
                                 </button>
                             </form>
@@ -120,25 +123,6 @@
                 </form>
             </div>
         </div>
-        
-        {{--  {{ $equipment  }}  --}}
-
-        {{--  For later equipent add function  --}}
-        {{--  <div class="row">
-            <div class="input-field col s6">
-                <select name="">
-                    <option value="" disabled selected>Equipment:</option>
-                    @foreach ($categories as $category)
-                        @if($category->id == $equipment->category_id)
-                            <option selected value="{{ $equipment->category->id }}">{{ $equipment->category->name }}</option>
-                        @else
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
-                <label>Category</label>
-            </div>
-        </div>  --}}
     </div>
     
     @include ('layouts.errors')
