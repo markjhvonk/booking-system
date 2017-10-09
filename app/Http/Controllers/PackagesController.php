@@ -61,6 +61,14 @@ class PackagesController extends Controller
         return back();
     }
 
+    public function delete(Request $request, Package $package)
+    {
+        $category = $package->category_id; //store package category for redirect before removal
+        $package->delete();
+
+        return redirect()->route('equipmentCategory', ['id' => $category]);
+    }
+
     public function addEquipment(Request $request, Package $package)
     {
         $package->equipment()->attach($request->equipment_id);
