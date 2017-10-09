@@ -16,7 +16,13 @@
         </div>
     </div>
     <div class="row">
-        
+        <form action="{{ url('admin/equipment/package',$package->id) }}" method="post">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <button class="btn-flat waves-effect waves-light red-text right" type="submit">
+                Delete package
+            </button>
+        </form>
     </div>
     <div class="row">
         <form method="POST" action="{{ url('admin/equipment/package',$package->id) }}" class="col s12 m6">
