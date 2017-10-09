@@ -66,7 +66,8 @@ class StudiosController extends Controller
         return back();
     }
 
-    public function delete(Request $request, Studio $studio){
+    public function delete(Request $request, Studio $studio)
+    {
         
         $studio->delete();
 
