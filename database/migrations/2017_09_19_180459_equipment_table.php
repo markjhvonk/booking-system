@@ -19,7 +19,8 @@ class EquipmentTable extends Migration
             $table->longtext('description');
             $table->string('data');
             $table->decimal('price');
-            $table->integer('category');
+            $table->integer('category_id');
+            $table->boolean('cvisible');
             $table->timestamps();
         });
     }
