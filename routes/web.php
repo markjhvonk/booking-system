@@ -24,6 +24,7 @@ Route::post('/admin/equipment', 'EquipmentController@store');                   
 Route::get('/admin/equipment/{equipment}/edit', 'EquipmentController@edit');                // edit   equipment item
 Route::patch('/admin/equipment/{equipment}', 'EquipmentController@update');                 // update equipment item
 Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');                // delete equipment item
+Route::patch('/admin/equipment/{equipment}/visible', 'EquipmentController@visible');       // toggle visibility equipment item
 Route::get('/admin/equipment/{current_category}', 'EquipmentController@category')->name('equipmentCategory');// display all equipment items from selected category
 
 // Category related routing
