@@ -4,6 +4,12 @@
     <div class="row">
         <h1>Edit: {{$studio->name}}</h1>
     </div>
+    <div class="row">
+        <div class="col s12 red-text">
+            <a href="{{ url('admin/studios') }}" class="breadcrumb grey-text lighten-1">Studios</a>
+            <a href="#!" class="breadcrumb red-text">{{ $studio->name }}</a>
+        </div>
+    </div>
     <form method="POST" action="{{ url('admin/studios',$studio->id) }}" class="col s12">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
