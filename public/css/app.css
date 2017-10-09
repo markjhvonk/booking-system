@@ -22,6 +22,10 @@ table tbody .description {
   max-width: 500px;
 }
 
+table tbody .visibility0 {
+  color: #a9a8a8;
+}
+
 .colorama ul li {
   width: 100px;
   height: 100px;
