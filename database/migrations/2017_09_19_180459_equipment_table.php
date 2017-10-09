@@ -20,7 +20,7 @@ class EquipmentTable extends Migration
             $table->string('data');
             $table->decimal('price');
             $table->integer('category_id');
-            $table->boolean('cvisible');
+            $table->boolean('visible');
             $table->timestamps();
         });
     }
