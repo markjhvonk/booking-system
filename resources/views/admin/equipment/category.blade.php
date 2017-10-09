@@ -57,7 +57,7 @@
 
                     <tbody>
                     @foreach ($equipment as $equipment)
-                        <tr>
+                        <tr class="visibility{{ $equipment->visible }}">
                             <td>{{ $equipment->name }}</td>
                             <td class="description truncate">{{ $equipment->description }}</td>
                             <td>
@@ -76,7 +76,19 @@
                                     {{ csrf_field() }}
                                     <button class="red-text clear-btn" type="submit"><i class="material-icons">delete</i></button>
                                 </form>
-                                <a class="green-text" href=""><i class="material-icons">visibility</i></a>
+                                <form method="POST" action="{{ url('admin/equipment',$equipment->id) }}/visible" style="display: inline-block;">
+                                    {{ method_field('PATCH') }}
+                                    {{ csrf_field() }}
+                                    <button class="green-text clear-btn" type="submit">
+                                        <i class="material-icons">
+                                        @if($equipment->visible === 1)
+                                            visibility
+                                        @else
+                                            visibility_off
+                                        @endif
+                                        </i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
