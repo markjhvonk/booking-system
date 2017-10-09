@@ -12,7 +12,7 @@ class Equipment extends Model
      * @var array
      */
      protected $fillable = [
-        'name', 'description', 'data', 'price', 'category_id'
+        'name', 'description', 'data', 'price', 'category_id', 'visible'
     ];
     
     public function category()
