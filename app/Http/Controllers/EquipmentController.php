@@ -67,7 +67,6 @@ class EquipmentController extends Controller
             'data'          => '',
             'price'         => '',
             'category_id'   => ''
-            
         ]);
 
         $equipment->update($request->all());
@@ -78,6 +77,17 @@ class EquipmentController extends Controller
     public function delete(Request $request, Equipment $equipment)
     {        
         $equipment->delete();
+        return back();
+    }
+
+    public function visible(Request $request, Equipment $equipment)
+    {
+        if($equipment->visible === 1){
+            $equipment->update(['visible' => 0]);
+        } else {
+            $equipment->update(['visible' => 1]);
+        }
+
         return back();
     }
 
