@@ -82,7 +82,7 @@ class EquipmentController extends Controller
 
     public function visible(Request $request, Equipment $equipment)
     {
-        if($equipment->visible === 1){
+        if($equipment->visible){
             $equipment->update(['visible' => 0]);
         } else {
             $equipment->update(['visible' => 1]);
