@@ -69,8 +69,7 @@
                         <td>&pound;{{ $equipment->price }}</td>
                         <td>{{ $equipment->category->name }}</td>
                         <td class="right-align">
-                            <form method="POST" action="" style="display: inline-block;">
-                                {{ method_field('DELETE') }}
+                            <form method="POST" action="{{ url('admin/studios',$studio->id) }}/remove-equipment/{{ $equipment->id }}" style="display: inline-block;">
                                 {{ csrf_field() }}
                                 <button class="red-text clear-btn" type="submit"><i class="material-icons">clear</i></button>
                             </form>
@@ -80,7 +79,7 @@
                 </tbody>
             </table>
             <div class="row">
-                <form method="POST" action="" class="col s12"> <!-- {{ url('admin/equipment/package',$studio->id) }}/add-equipment -->
+                <form method="POST" action="{{ url('admin/studios',$studio->id) }}/add-equipment" class="col s12">
                     {{ csrf_field() }}
                    <div class="input-field col s6">
                         <select name="equipment_id">
