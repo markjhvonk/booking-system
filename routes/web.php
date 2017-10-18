@@ -14,6 +14,8 @@ Route::get('/admin/studios/create', 'StudiosController@create');        // creat
 Route::post('/admin/studios', 'StudiosController@store');               // submit studio
 Route::get('/admin/studios/{studio}', 'StudiosController@studio');      // display specific studio
 Route::get('/admin/studios/{studio}/edit', 'StudiosController@edit');   // edit   specific studio
+Route::post('/admin/studios/{studio}/add-equipment', 'StudiosController@addEquipment');         // add equipment to studio
+Route::post('/admin/studios/{studio}/remove-equipment/{equipment_id}', 'StudiosController@removeEquipment');   // remove equipment to studio
 Route::patch('/admin/studios/{studio}', 'StudiosController@update');    // update specific studio
 Route::delete('/admin/studios/{studio}', 'StudiosController@delete');   // delete specific studio
 
@@ -40,7 +42,7 @@ Route::post('/admin/equipment/package/{current_category?}', 'PackagesController@
 Route::get('/admin/equipment/package/{package}', 'PackagesController@package');                             // display package
 Route::get('/admin/equipment/package/{package}/edit', 'PackagesController@edit');                           // edit package
 Route::post('/admin/equipment/package/{package}/add-equipment', 'PackagesController@addEquipment');         // add equipment
-Route::post('/admin/equipment/package/{package}/remove-equipment/{equipment_id}', 'PackagesController@removeEquipment');   // add equipment
+Route::post('/admin/equipment/package/{package}/remove-equipment/{equipment_id}', 'PackagesController@removeEquipment');   // remove equipment
 Route::patch('/admin/equipment/package/{package}', 'PackagesController@update');                            // update package
 Route::delete('/admin/equipment/package/{package}', 'PackagesController@delete');                           // delete package
 
