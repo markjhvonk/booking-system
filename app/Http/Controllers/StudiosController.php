@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\equipment;
 use App\studio;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,11 @@ class StudiosController extends Controller
 
     public function studio(Studio $studio)
     {
-        return view('admin.studios.studio', compact('studio'));
+        $equipments = Equipment::whereNotIn('id', $studio->equipment->pluck('id'))
+        ->select('id','name')
+        ->get();
+
+        return view('admin.studios.studio', compact('studio', 'equipments'));
     }
 
     public function create()
