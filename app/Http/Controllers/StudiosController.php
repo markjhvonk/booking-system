@@ -78,4 +78,18 @@ class StudiosController extends Controller
 
         return redirect('/admin/studios');
     }
+
+    public function addEquipment(Request $request, Studio $studio)
+    {
+        $studio->equipment()->attach($request->equipment_id);
+
+        return back();
+    }
+
+    public function removeEquipment(Request $request, Studio $studio, Equipment $equipment_id)
+    {
+        $studio->equipment()->detach($request->equipment_id);
+
+        return back();
+    }
 }
