@@ -14,5 +14,10 @@ class Studio extends Model
      protected $fillable = [
         'name', 'info', 'specs', 'cover_photo', 'location', 'assistance'
     ];
+
+    public function equipment()
+    {
+        return $this->belongsToMany(Equipment::class);
+    }
     
 }
