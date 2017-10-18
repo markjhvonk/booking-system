@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col s6">
             <h4>Equipment</h4>
-            <table>
+            <table class="striped">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -55,44 +55,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                {{--  @foreach ($equipment as $equipment)  --}}
+                @foreach ($studio->equipment as $equipment)
                     <tr class="visibility">
-                        <td></td>
-                        <td class="description truncate"></td>
+                        <td>{{ $equipment->name }}</td>
+                        <td class="description truncate">{{ $equipment->description }}</td>
                         <td>
-                            {{--  @if(!$equipment->data)
+                            @if(!$equipment->data)
                                 N/A
                             @else
                                 {{ $equipment->data }}
-                            @endif  --}}
+                            @endif
                         </td>
-                        <td>&pound;</td>
-                        <td></td>
+                        <td>&pound;{{ $equipment->price }}</td>
+                        <td>{{ $equipment->category->name }}</td>
                         <td class="right-align">
-                            <a class="blue-text" href="/edit"><i class="material-icons">edit</i></a>
                             <form method="POST" action="" style="display: inline-block;">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button class="red-text clear-btn" type="submit"><i class="material-icons">delete</i></button>
-                            </form>
-                            <form method="POST" action="/visible" style="display: inline-block;">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
-                                <button class="green-text clear-btn" type="submit">
-                                    <i class="material-icons">
-                                    {{--  @if($equipment->visible === 1)
-                                        visibility
-                                    @else
-                                        visibility_off
-                                    @endif  --}}
-                                    </i>
-                                </button>
+                                <button class="red-text clear-btn" type="submit"><i class="material-icons">clear</i></button>
                             </form>
                         </td>
                     </tr>
-                {{--  @endforeach  --}}
+                @endforeach
                 </tbody>
             </table>
+            <div class="row">
+                <form method="POST" action="" class="col s12"> <!-- {{ url('admin/equipment/package',$studio->id) }}/add-equipment -->
+                    {{ csrf_field() }}
+                   <div class="input-field col s6">
+                        <select name="equipment_id">
+                            <option value="" disabled selected>Equipment:</option>
+                            @foreach ($equipments as $equipmentItem)
+                                <option value="{{ $equipmentItem->id }}">{{ $equipmentItem->name }}</option>
+                            @endforeach
+                        </select>
+                        <label>Add Equipment</label>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">
+                        Add item
+                        <i class="material-icons right">add</i>
+                    </button>              
+                </form>
+            </div>
         </div>
         <div class="col s6">
             <h4>Packages</h4>
@@ -101,5 +105,10 @@
 @endsection
 
 @section ('footer')
-    <script src=""></script>
+    <script>
+        // enable materialize dropdown
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
 @endsection
