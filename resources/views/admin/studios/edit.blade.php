@@ -53,69 +53,6 @@
             </div>
         </div>
         <div class="row">
-            <h4>Photo's</h4>
-        </div>
-        <div class="row">
-            <div class="col s12 m6">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/media/sample-1.jpg">
-                        {{--  <span class="card-title">Card Title</span>  --}}
-                    </div>   
-                    <div class="file-field input-field col s12">
-                        <div class="btn">
-                            <span>File</span>
-                            <input name="coverPhoto" id="coverPhoto" type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="New cover photo">
-                        </div>
-                    </div>
-                        
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image"><img src="/media/sample-1.jpg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="file-field input-field col s6">
-                        <div class="btn">
-                            <span>Files</span>
-                            <input name="photos" id="photos" type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Add more photos">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <h4>Studio location:</h4>
         </div>
         <div class="row">
