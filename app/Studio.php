@@ -19,5 +19,14 @@ class Studio extends Model
     {
         return $this->belongsToMany(Equipment::class);
     }
+
+    public function package()
+    {
+        return $this->belongsToMany(Package::class);
+    }
     
+    public function photo()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }
