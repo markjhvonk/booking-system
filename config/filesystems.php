@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        // 'studio_photos' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('app/public'),
+        //     'url' => env('APP_URL').'/media/studio-photos',
+        //     'visibility' => 'public',
+        // ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),
