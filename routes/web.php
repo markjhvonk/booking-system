@@ -14,8 +14,12 @@ Route::get('/admin/studios/create', 'StudiosController@create');        // creat
 Route::post('/admin/studios', 'StudiosController@store');               // submit studio
 Route::get('/admin/studios/{studio}', 'StudiosController@studio');      // display specific studio
 Route::get('/admin/studios/{studio}/edit', 'StudiosController@edit');   // edit   specific studio
-Route::post('/admin/studios/{studio}/add-equipment', 'StudiosController@addEquipment');         // add equipment to studio
-Route::post('/admin/studios/{studio}/remove-equipment/{equipment_id}', 'StudiosController@removeEquipment');   // remove equipment to studio
+Route::post('/admin/studios/{studio}/add-equipment', 'StudiosController@addEquipment');                         // add equipment to studio
+Route::post('/admin/studios/{studio}/remove-equipment/{equipment_id}', 'StudiosController@removeEquipment');    // remove equipment to studio
+Route::post('/admin/studios/{studio}/add-package', 'StudiosController@addPackage');                             // add package to studio
+Route::post('/admin/studios/{studio}/remove-package/{package_id}', 'StudiosController@removePackage');          // remove package to studio
+Route::post('/admin/studios/{studio}/add-photo', 'StudiosController@addPhoto');                     // add photo to studio
+Route::post('/admin/studios/{studio}/remove-photo/{photo}', 'StudiosController@removePhoto');    // remove photo to studio
 Route::patch('/admin/studios/{studio}', 'StudiosController@update');    // update specific studio
 Route::delete('/admin/studios/{studio}', 'StudiosController@delete');   // delete specific studio
 
