@@ -38,6 +38,55 @@
         <p>{{$studio->info}}</p>
     </div>
     <div class="row">
+        <div class="row"><h3>Photo's</h3></div>
+        <div class="row">
+            @foreach ($studio->photo as $photo)
+            <div class="col s6 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{asset('/storage/'.$photo->url)}}">
+                        <form action="{{ url('admin/studios',$studio->id) }}/remove-photo/{{ $photo->id }}" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></button>
+                        </form>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">{{ $photo->name }}</span>
+                        <p>{{ $photo->caption }}</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <div class="col s6 m4 card blue-grey darken-1" style="padding: 15px;">
+                <form action="{{ url('admin/studios',$studio->id) }}/add-photo" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="input-field">
+                        <input id="name" type="text" class="validate" name="name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="caption" type="text" class="validate" name="caption">
+                        <label for="caption">Caption</label>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>File</span>
+                            <input name="url" type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <input hidden name="studio_id" value="{{$studio->id}}">
+                    <button class="btn waves-effect waves-light" type="submit">
+                        Add photo
+                        <i class="material-icons right">add</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <h3>Available equipment</h3>
     </div>
     <div class="row">
@@ -98,7 +147,50 @@
             </div>
         </div>
         <div class="col s6">
-            <h4>Packages</h4>
+            <div class="row">
+                <h4>Packages</h4>
+            </div>
+            <div class="row">
+            @foreach ($studio->package as $package)
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ $package->name }}</span>
+                            <p>{{ $package->description }}</p>
+                            <div class="divider"></div>
+                            <ul>
+                                @foreach ($package->equipment as $packageEquipment)
+                                <li>{{ $packageEquipment->name}}</li>
+                                @endforeach
+                            </ul>
+                            <form action="{{ url('admin/studios',$studio->id) }}/remove-package/{{ $package->id }}" method="post">
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></button>
+                            </form>
+                            {{--  <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ url('admin/studios',$studio->id) }}/remove-package/{{ $package->id }}"><i class="material-icons">clear</i></a>  --}}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+                <div class="col s12 m6">
+                    <form method="POST" action="{{ url('admin/studios',$studio->id) }}/add-package" class="col s12">
+                        {{ csrf_field() }}
+                        <div class="input-field col s12">
+                            <select name="package_id">
+                                <option value="" disabled selected>Equipment:</option>
+                                @foreach ($packages as $package)
+                                    <option value="{{ $package->id }}">{{ $package->name }}</option>
+                                @endforeach
+                            </select>
+                            <label>Add Equipment</label>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">
+                            Add Package
+                            <i class="material-icons right">add</i>
+                        </button>              
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
