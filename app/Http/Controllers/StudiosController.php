@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\equipment;
+use App\package;
 use App\studio;
+use App\photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudiosController extends Controller
 {
@@ -20,8 +23,11 @@ class StudiosController extends Controller
         $equipments = Equipment::whereNotIn('id', $studio->equipment->pluck('id'))
         ->select('id','name')
         ->get();
+        $packages = Package::whereNotIn('id', $studio->package->pluck('id'))
+        ->select('id','name')
+        ->get();
 
-        return view('admin.studios.studio', compact('studio', 'equipments'));
+        return view('admin.studios.studio', compact('studio', 'equipments', 'packages'));
     }
 
     public function create()
@@ -92,4 +98,69 @@ class StudiosController extends Controller
 
         return back();
     }
+
+    public function addPackage(Request $request, Studio $studio)
+    {
+        $studio->package()->attach($request->package_id);
+
+        return back();
+    }
+
+    public function removePackage(Request $request, Studio $studio, Package $package_id)
+    {
+        $studio->package()->detach($request->package_id);
+
+        return back();
+    }
+
+    public function addPhoto(Request $request)
+    {
+        $this->validate(request(), [
+            'name'          => 'required',
+            'caption'       => '',
+            'file_name'     => '',
+            'url'           => 'required',
+            'studio_id'     => 'required'
+        ]);
+
+        // store image
+        $path = $request->file('url')->store('studio_photos', 'public');
+        $photo_name = $request->file('url')->hashName();
+        // dd($photo_name, $path);
+
+        // gather data and add it to the database
+        $photo = photo::create(['name'=>$request->name, 'caption'=>$request->caption, 'file_name'=>$photo_name, 'url'=>$path, 'studio_id'=>$request->studio_id]);
+        return back();
+    }
+
+    public function removePhoto(Request $request, Studio $studio, Photo $photo)
+    {
+        // store image
+        // $path = $request->file('url')->store('studio_photos', 'public');
+        // dd($photo->file_name);
+
+        // $exists = Storage::disk('public')->exists('studio_photos/'.$photo->file_name);
+        // dd($exists);
+
+        if(Storage::disk('public')->delete('studio_photos/'.$photo->file_name)){
+            $photo->delete();
+            return back();
+        } else {
+            echo('Áint working boii!');
+        }
+        
+
+        // if(Storage::delete('app/public/studio_photos/'.$photo->file_name)){
+        //     $photo->delete();
+        //     return back();
+        // } else {
+        //     echo('tis broken boii D:');
+        // }
+        // unlink(storage_path('app/foldername/'.$filename));
+
+        // gather data and add it to the database
+        
+        
+    }
+
 }
