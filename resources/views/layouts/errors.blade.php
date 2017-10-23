@@ -1,9 +1,7 @@
 @if (count($errors))
-    <div class="alert alert-error">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    <script>
+        @foreach ($errors->all() as $error)
+            Materialize.toast('{{ $error }}', 4000, 'rounded deep-orange accent-3');
+        @endforeach
+    </script>
 @endif

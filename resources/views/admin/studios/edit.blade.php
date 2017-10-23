@@ -92,9 +92,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            @include ('layouts.errors')
-        </div>
     </form>
     {{-- old table relation stuff --}}
     {{--  

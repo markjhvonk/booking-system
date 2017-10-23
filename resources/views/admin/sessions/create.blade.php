@@ -25,9 +25,6 @@
                     <i class="material-icons right">send</i>
                 </button>
             </div>
-            <div class="row">
-                @include ('layouts.errors')
-            </div>
         </form>
     </div>
 @endsection
