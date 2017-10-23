@@ -135,32 +135,12 @@ class StudiosController extends Controller
 
     public function removePhoto(Request $request, Studio $studio, Photo $photo)
     {
-        // store image
-        // $path = $request->file('url')->store('studio_photos', 'public');
-        // dd($photo->file_name);
-
-        // $exists = Storage::disk('public')->exists('studio_photos/'.$photo->file_name);
-        // dd($exists);
-
         if(Storage::disk('public')->delete('studio_photos/'.$photo->file_name)){
             $photo->delete();
             return back();
         } else {
             echo('Áint working boii!');
         }
-        
-
-        // if(Storage::delete('app/public/studio_photos/'.$photo->file_name)){
-        //     $photo->delete();
-        //     return back();
-        // } else {
-        //     echo('tis broken boii D:');
-        // }
-        // unlink(storage_path('app/foldername/'.$filename));
-
-        // gather data and add it to the database
-        
-        
     }
 
 }
