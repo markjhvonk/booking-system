@@ -29,10 +29,11 @@ class UsersController extends Controller
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'role' => 'required'
         ]);
 
-        $user = User::create(request(['name', 'email', 'password'])); //added bcrypt around password for encryption
+        $user = User::create(request(['name', 'email', 'password', 'role'])); //added bcrypt around password for encryption
         $user->password = bcrypt($user->password);
         $user->save();
 
