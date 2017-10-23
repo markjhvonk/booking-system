@@ -30,14 +30,31 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s6">
+                    <select name="role">
+                        <option value="" disabled selected>Select role</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Editor</option>
+                        <option value="3">Client</option>
+                    </select>
+                    <label>Role Select</label>
+                </div>
+            </div>
+            </div>
+            <div class="row">
                 <button class="btn waves-effect waves-light" type="submit">
                     Register
                     <i class="material-icons right">send</i>
                 </button>
             </div>
-            <div class="row">
-                @include ('layouts.errors')
-            </div>
         </form>
     </div>
+@endsection
+
+@section ('footer')
+    <script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+    </script>
 @endsection
