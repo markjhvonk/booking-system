@@ -9,6 +9,33 @@ Route::middleware(['client'])->group(function () {
 
     Route::middleware(['editor'])->group(function () {
 
+        Route::middleware(['admin'])->group(function () {
+            // Studio routing
+            Route::get('/admin/studios/create', 'StudiosController@create');        // create studio
+            Route::post('/admin/studios', 'StudiosController@store');               // submit studio
+            Route::delete('/admin/studios/{studio}', 'StudiosController@delete');   // delete specific studio
+
+            // Equipment related routing
+            Route::get('/admin/equipment/create/{current_category?}', 'EquipmentController@create');    // create equipment item
+            Route::post('/admin/equipment', 'EquipmentController@store');                               // submit equipment item
+            Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');                // delete equipment item
+
+            // Category routing
+            Route::get('/admin/equipment/category/create', 'CategoriesController@create');          // create category
+            Route::post('/admin/equipment/category', 'CategoriesController@store');                 // submit category
+            Route::delete('/admin/equipment/category/{category}', 'CategoriesController@delete');   // delete category
+
+            // Packages routing
+            Route::get('/admin/equipment/package/create/{current_category?}', 'PackagesController@create'); // create package
+            Route::post('/admin/equipment/package/{current_category?}', 'PackagesController@store');        // submit package
+            Route::delete('/admin/equipment/package/{package}', 'PackagesController@delete');               // delete package
+
+            // Users routing
+            Route::get('/admin/users/register', 'UsersController@create');  // create new user
+            Route::post('/admin/users', 'UsersController@store');           // submit new user
+
+        });
+
         // Admin home page
         Route::get('/admin', 'AdminController@index')->name('dashboard');
 
@@ -45,36 +72,11 @@ Route::middleware(['client'])->group(function () {
         // Users routing
         Route::get('/admin/users', 'UsersController@index');            // display all users
 
-        Route::middleware(['admin'])->group(function () {
-            // Studio routing
-            Route::get('/admin/studios/create', 'StudiosController@create');        // create studio
-            Route::post('/admin/studios', 'StudiosController@store');               // submit studio
-            Route::delete('/admin/studios/{studio}', 'StudiosController@delete');   // delete specific studio
-
-            // Equipment related routing
-            Route::get('/admin/equipment/create/{current_category?}', 'EquipmentController@create');    // create equipment item
-            Route::post('/admin/equipment', 'EquipmentController@store');                               // submit equipment item
-            Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');                // delete equipment item
-
-            // Category routing
-            Route::get('/admin/equipment/category/create', 'CategoriesController@create');          // create category
-            Route::post('/admin/equipment/category', 'CategoriesController@store');                 // submit category
-            Route::delete('/admin/equipment/category/{category}', 'CategoriesController@delete');   // delete category
-
-            // Packages routing
-            Route::get('/admin/equipment/package/create/{current_category?}', 'PackagesController@create'); // create package
-            Route::post('/admin/equipment/package/{current_category?}', 'PackagesController@store');        // submit package
-            Route::delete('/admin/equipment/package/{package}', 'PackagesController@delete');               // delete package
-
-            // Users routing
-            Route::get('/admin/users/register', 'UsersController@create');  // create new user
-            Route::post('/admin/users', 'UsersController@store');           // submit new user
-
-        });
-
     });
 
 });
+
+Route::get('/admin/notAuthorised', 'SessionsController@notAuthorised');
 
 // Login routing
 Route::get('/admin/login', 'SessionsController@create');        // login page
