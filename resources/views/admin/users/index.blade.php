@@ -10,11 +10,32 @@
         </div>
     </div>
     <div class="row">
-        <ul>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach ($users as $user)
-            <li>{{ $user->name }}</li>
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        @if($user->role == 1)
+                            Admin
+                        @elseif($user->role == 2)
+                            Editor
+                        @else
+                            Client
+                        @endif
+                    </td>
+                </tr>
             @endforeach
-        </ul>  
+            </tbody>
+        </table>
     </div>
     
 @endsection
