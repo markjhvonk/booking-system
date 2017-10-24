@@ -16,6 +16,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +32,14 @@
                         @else
                             Client
                         @endif
+                    </td>
+                    <td>
+                        <a class="blue-text" href="{{ url('admin/users',$user->id) }}/edit"><i class="material-icons">edit</i></a>
+                        <form method="POST" action="{{ url('admin/users',$user->id) }}" style="display: inline-block;">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <button class="red-text clear-btn" type="submit"><i class="material-icons">delete</i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
