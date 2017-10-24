@@ -12,7 +12,7 @@ class Studio extends Model
      * @var array
      */
      protected $fillable = [
-        'name', 'info', 'specs', 'cover_photo', 'location', 'assistance'
+        'name', 'info', 'specs', 'cover_photo', 'location', 'assistance', 'visible'
     ];
 
     public function equipment()

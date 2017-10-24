@@ -143,4 +143,15 @@ class StudiosController extends Controller
         }
     }
 
+    public function visible(Request $request, Studio $studio)
+    {
+        if($studio->visible){
+            $studio->update(['visible' => 0]);
+        } else {
+            $studio->update(['visible' => 1]);
+        }
+
+        return back();
+    }
+
 }

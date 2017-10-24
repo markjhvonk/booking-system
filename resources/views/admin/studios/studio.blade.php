@@ -27,7 +27,21 @@
     </div>
     <div class="row">
         <a class="waves-effect waves-light btn yellow darken-1" href="{{ url('admin/studios',$studio->id) }}/edit"><i class="material-icons right">mode_edit</i>edit</a>
-        <a class="waves-effect waves-light btn green darken-1" href="{{ url('admin/studios',$studio->id) }}/edit"><i class="material-icons right">visibility</i>visibility</a>
+        <form method="POST" action="{{ url('admin/studios',$studio->id) }}/visible" style="display: inline-block;">
+            {{ method_field('PATCH') }}
+            {{ csrf_field() }}
+            @if($studio->visible === 1)
+            <button class="waves-effect waves-light btn green darken-1" type="submit">
+                <i class="material-icons right">visibility</i>
+                visibility 
+            </button>
+            @else
+            <button class="waves-effect waves-light btn grey lighten-1" type="submit">
+                <i class="material-icons right">visibility_off</i>
+                visibility 
+            </button>
+            @endif
+        </form>
         <form method="POST" action="{{ url('admin/studios',$studio->id) }}" style="display: inline-block;">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
