@@ -19,7 +19,7 @@ class Client
     {
         if(! Auth::check() ){
             return redirect('admin/login')->withErrors([
-                'message' => "You are not logged in."
+                'message' => "Please log in"
             ]);
         }
 
