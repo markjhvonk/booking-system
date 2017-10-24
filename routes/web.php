@@ -33,6 +33,10 @@ Route::middleware(['client'])->group(function () {
             // Users routing
             Route::get('/admin/users/register', 'UsersController@create');  // create new user
             Route::post('/admin/users', 'UsersController@store');           // submit new user
+            Route::get('/admin/users/{user}/edit', 'UsersController@edit');     // edit user
+            Route::patch('/admin/users/{user}', 'UsersController@update');      // update user
+            Route::delete('/admin/users/{user}', 'UsersController@delete');     // delete user
+
 
         });
 
@@ -49,7 +53,8 @@ Route::middleware(['client'])->group(function () {
         Route::post('/admin/studios/{studio}/remove-package/{package_id}', 'StudiosController@removePackage');          // remove package from studio
         Route::post('/admin/studios/{studio}/add-photo', 'StudiosController@addPhoto');                 // add photo to studio
         Route::post('/admin/studios/{studio}/remove-photo/{photo}', 'StudiosController@removePhoto');   // remove photo to studio
-        Route::patch('/admin/studios/{studio}', 'StudiosController@update');    // update specific studio
+        Route::patch('/admin/studios/{studio}', 'StudiosController@update');                            // update specific studio
+        Route::patch('/admin/studios/{studio}/visible', 'StudiosController@visible');                   // toggle visibility studio
 
         // Equipment routing
         Route::get('/admin/equipment', 'EquipmentController@index');                                // dashboard
@@ -64,13 +69,13 @@ Route::middleware(['client'])->group(function () {
 
         // Packages routing
         Route::get('/admin/equipment/package/{package}', 'PackagesController@package');     // display package
-        Route::get('/admin/equipment/package/{package}/edit', 'PackagesController@edit');       // edit package
+        Route::get('/admin/equipment/package/{package}/edit', 'PackagesController@edit');   // edit package
         Route::patch('/admin/equipment/package/{package}', 'PackagesController@update');    // update package
         Route::post('/admin/equipment/package/{package}/add-equipment', 'PackagesController@addEquipment'); // add equipment
         Route::post('/admin/equipment/package/{package}/remove-equipment/{equipment_id}', 'PackagesController@removeEquipment');   // remove equipment
 
         // Users routing
-        Route::get('/admin/users', 'UsersController@index');            // display all users
+        Route::get('/admin/users', 'UsersController@index');                // display all users
 
     });
 
