@@ -52,6 +52,17 @@ class EquipmentController extends Controller
         return view('admin.equipment.category', compact('equipment','packages','categories','current_category'));
     }
 
+    public function searchEquipment(Category $current_category, Request $request)
+    {
+        $searchQuery = $request->searchQuery;
+        $equipment = Equipment::search($searchQuery)->get()->where('category_id', $current_category->id);
+        // $equipment = Equipment::get()->where('category_id', $current_category->id);
+        $packages = Package::get()->where('category_id', $current_category->id);
+        $categories = Category::get();
+        
+        return view('admin.equipment.category', compact('equipment','packages','categories','current_category', 'searchQuery'));
+    }
+
     public function edit(Equipment $equipment)
     {        
         $categories = Category::get();
