@@ -20,14 +20,17 @@ class StudiosController extends Controller
 
     public function studio(Studio $studio)
     {
-        $equipments = Equipment::whereNotIn('id', $studio->equipment->pluck('id'))
-        ->select('id','name')
-        ->get();
-        $packages = Package::whereNotIn('id', $studio->package->pluck('id'))
-        ->select('id','name')
-        ->get();
+        $studio::with('equipment', 'package', 'photo'); //eager load the relations
+        
 
-        return view('admin.studios.studio', compact('studio', 'equipments', 'packages'));
+        $otherEquipments = Equipment::whereNotIn('id', $studio->equipment->pluck('id'))
+        ->select('id','name')
+        ->get(); // Load in all the Equipment that is not yet related to this model
+        $otherPackages = Package::whereNotIn('id', $studio->package->pluck('id'))
+        ->select('id','name')
+        ->get(); // Load in all the Packages that is not yet related to this model
+
+        return view('admin.studios.studio', compact('studio', 'otherEquipments', 'otherPackages'));
     }
 
     public function create()
