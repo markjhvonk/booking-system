@@ -12,8 +12,6 @@ class EquipmentController extends Controller
     public function index()
     {
         $categories = Category::get();
-        $equipment = Equipment::latest()->get();
-        $packages = Package::latest()->get();
         
         return view('admin.equipment.index', compact('equipment','categories','packages'));
     }
@@ -45,15 +43,17 @@ class EquipmentController extends Controller
 
     public function category(Category $current_category)
     {
+        $current_category::with('equipment', 'package'); // eager load the relations
+
         $equipment = Equipment::get()->where('category_id', $current_category->id);
         $packages = Package::get()->where('category_id', $current_category->id);
-        $categories = Category::get();
         
-        return view('admin.equipment.category', compact('equipment','packages','categories','current_category'));
+        return view('admin.equipment.category', compact('equipment','packages','current_category'));
     }
 
     public function searchEquipment(Category $current_category, Request $request)
     {
+        $current_category::with('equipment', 'package'); // eager load the relations
         $searchQuery = $request->searchQuery;
         $equipment = Equipment::search($searchQuery)->get()->where('category_id', $current_category->id);
         // $equipment = Equipment::get()->where('category_id', $current_category->id);

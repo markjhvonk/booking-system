@@ -31,9 +31,11 @@ class PackagesController extends Controller
         return redirect()->route('equipmentCategory', $current_category);
     }
 
-    public function edit(Package $package){
-        $categories = Category::get();
+    public function edit(Package $package)
+    {
+        $package::with('equipment');
 
+        $categories = Category::get();
         //get all the equipment from same category as package and leave out all the equipment already in the package (creds to Nick)
         $equipment = Equipment::whereNotIn('id', $package->equipment->pluck('id'))
                                 ->where('category_id',$package->category_id)
