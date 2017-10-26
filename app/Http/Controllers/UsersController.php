@@ -78,4 +78,11 @@ class UsersController extends Controller
 
         return redirect('/admin/users');
     }
+
+    public function search(Request $request)
+    {
+        $searchQuery = $request->searchQuery;
+        $users = User::search($searchQuery)->get();
+        return view('admin.users.index', compact('users', 'searchQuery'));
+    }
 }

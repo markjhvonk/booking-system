@@ -9,6 +9,27 @@
             <a class="waves-effect waves-light btn" href="{{ url('admin/users/register') }}">new user</a>
         </div>
     </div>
+    <div class="row" style="margin-bottom: 0;">
+        <form class="col s12 valign-wrapper" action="{{ url('/admin/users/search') }}" method="post" style="margin-bottom: 0;">
+            {{ csrf_field() }}
+            <div class="input-field" style="width: 300px; margin-right: 15px;">
+                <input id="search" name="searchQuery" type="text" class="validate"
+                @if(isset($searchQuery))
+                    value="{{ $searchQuery }}"
+                @endif
+                >
+                <label for="search">Search users</label>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right">search</i>Search</button>
+        </form>
+    </div>
+    @if(isset($searchQuery))
+    <div class="row">
+        <div class="col s12" style="margin-bottom: 0;">
+            <a class="waves-effect waves-light red-text clr-btn" href="{{ url('/admin/users') }}"><i class="material-icons left">clear</i>clear search</a>                        
+        </div>
+    </div>
+    @endif
     <div class="row">
         <table class="striped">
             <thead>

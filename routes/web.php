@@ -62,7 +62,7 @@ Route::middleware(['client'])->group(function () {
         Route::patch('/admin/equipment/{equipment}', 'EquipmentController@update');                 // update equipment item
         Route::patch('/admin/equipment/{equipment}/visible', 'EquipmentController@visible');        // toggle visibility equipment item
         Route::get('/admin/equipment/{current_category}', 'EquipmentController@category')->name('equipmentCategory'); // display all equipment items from selected category
-        Route::post('/admin/equipment/{current_category}/search', 'EquipmentController@searchEquipment');                                // search equipment
+        Route::post('/admin/equipment/{current_category}/search', 'EquipmentController@searchEquipment');   // search equipment
 
         // Category routing
         Route::get('/admin/equipment/category/{category}/edit', 'CategoriesController@edit');   // edit category
@@ -77,6 +77,7 @@ Route::middleware(['client'])->group(function () {
 
         // Users routing
         Route::get('/admin/users', 'UsersController@index');                // display all users
+        Route::post('/admin/users/search', 'UsersController@search');   // search equipment
 
     });
 
