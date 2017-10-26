@@ -23,7 +23,14 @@ class Client
             ]);
         }
 
-        
+        if(Auth()->user()->role < 3){
+            // return redirect('admin/notAuthorised')->withErrors([
+            //     'message' => "You are not authorised to see this page with your current role."
+            // ]);
+            return back()->withErrors([
+                'message' => "This area is for clients only"
+            ]);
+        }
 
         return $next($request);
     }
