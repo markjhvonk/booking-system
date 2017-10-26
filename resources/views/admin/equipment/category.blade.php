@@ -31,9 +31,17 @@
                         <p>{{ $package->description }}</p>
                         <div class="divider"></div>
                         <ul>
+                        @if($package->equipment->count() > 5)
+                            @foreach(($package->equipment->take(5)) as $packageEquipment)
+                            <li>{{ $packageEquipment->name}}</li>
+                            @endforeach
+                            <li>...</li>
+                            <li><em>total: {{ $package->equipment->count() }}</em></li>
+                        @else
                             @foreach ($package->equipment as $packageEquipment)
                             <li>{{ $packageEquipment->name}}</li>
                             @endforeach
+                        @endif
                         </ul>
                         <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ url('admin/equipment/package',$package->id) }}/edit"><i class="material-icons">edit</i></a>
                     </div>

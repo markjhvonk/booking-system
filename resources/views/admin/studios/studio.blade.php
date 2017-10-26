@@ -147,7 +147,7 @@
                    <div class="input-field col s6">
                         <select name="equipment_id">
                             <option value="" disabled selected>Equipment:</option>
-                            @foreach ($equipments as $equipmentItem)
+                            @foreach ($otherEquipments as $equipmentItem)
                                 <option value="{{ $equipmentItem->id }}">{{ $equipmentItem->name }}</option>
                             @endforeach
                         </select>
@@ -165,25 +165,36 @@
                 <h4>Packages</h4>
             </div>
             <div class="row">
+
             @foreach ($studio->package as $package)
                 <div class="col s12 m6">
-                    <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">{{ $package->name }}</span>
-                            <p>{{ $package->description }}</p>
-                            <div class="divider"></div>
-                            <ul>
-                                @foreach ($package->equipment as $packageEquipment)
-                                <li>{{ $packageEquipment->name}}</li>
-                                @endforeach
-                            </ul>
-                            <form action="{{ url('admin/studios',$studio->id) }}/remove-package/{{ $package->id }}" method="post">
-                                {{ csrf_field() }}
-                                <button type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></button>
-                            </form>
-                            {{--  <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ url('admin/studios',$studio->id) }}/remove-package/{{ $package->id }}"><i class="material-icons">clear</i></a>  --}}
+                    <a href="{{ url('admin/equipment/package',$package->id) }}/edit">
+                        <div class="card blue-grey darken-1 hoverable">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ $package->name }}</span>
+                                <p>{{ $package->description }}</p>
+                                <div class="divider"></div>
+                                <ul>
+                                    @if($package->equipment->count() > 5)
+                                        @foreach(($package->equipment->take(5)) as $packageEquipment)
+                                        <li>{{ $packageEquipment->name}}</li>
+                                        @endforeach
+                                        <li>...</li>
+                                        <li><em>total: {{ $package->equipment->count() }}</em></li>
+                                    @else
+                                        @foreach ($package->equipment as $packageEquipment)
+                                        <li>{{ $packageEquipment->name}}</li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                                <form action="{{ url('admin/studios',$studio->id) }}/remove-package/{{ $package->id }}" method="post">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></button>
+                                </form>
+                                {{--  <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ url('admin/studios',$studio->id) }}/remove-package/{{ $package->id }}"><i class="material-icons">clear</i></a>  --}}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
                 <div class="col s12 m6">
@@ -192,11 +203,11 @@
                         <div class="input-field col s12">
                             <select name="package_id">
                                 <option value="" disabled selected>Equipment:</option>
-                                @foreach ($packages as $package)
+                                @foreach ($otherPackages as $package)
                                     <option value="{{ $package->id }}">{{ $package->name }}</option>
                                 @endforeach
                             </select>
-                            <label>Add Equipment</label>
+                            <label>Add Package</label>
                         </div>
                         <button class="btn waves-effect waves-light" type="submit">
                             Add Package
