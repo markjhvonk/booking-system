@@ -2,7 +2,7 @@
 
 @section ('content')
     <div class="row">
-        <h1>Login</h1>
+        <h1>Admin login</h1>
     </div>
     <div class="row">
         <form method="POST" action="login" class="col s12">
@@ -24,6 +24,9 @@
                     Login
                     <i class="material-icons right">send</i>
                 </button>
+            </div>
+            <div class="row">
+                 <a class="" href="{{ url('/client/login') }}" >Client login</a>
             </div>
         </form>
     </div>
