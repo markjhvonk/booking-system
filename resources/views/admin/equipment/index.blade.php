@@ -41,57 +41,6 @@
             </div>
         </div>
     </div>
-
-    {{--  Testing packages  --}}
-    {{--  <div class="row">
-        @foreach ($packages as $package)
-        <div class="col s6 m4">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">{{ $package->name }}</span>
-                    <p>{{ $package->description }}</p>
-                    <div class="divider"></div>
-                    <ul>
-                        @foreach ($package->equipment as $packageEquipment)
-                        <li>{{ $packageEquipment->name}}</li>
-                        @endforeach
-                    </ul>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
-                </div>
-            </div>
-        </div>
-        @endforeach    
-    </div>  --}}
-
-    {{--  Working code  --}}
-    {{--  <div class="row">
-        
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Data</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-
-            <tbody>
-            @foreach ($equipment as $equipment)
-                <tr>
-                    <td>{{ $equipment->name }}</td>
-                    <td>{{ $equipment->description }}</td>
-                    <td>{{ $equipment->data }}</td>
-                    <td>{{ $equipment->price }}</td>
-                    <td>{{ $equipment->category->name }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-
-    </div>  --}}
-
 @endsection
 
 @section ('footer')
