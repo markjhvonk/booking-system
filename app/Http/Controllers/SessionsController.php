@@ -11,6 +11,7 @@ class SessionsController extends Controller
         $this->middleware('guest', ['except' => 'destroy']);
     }
 
+    // admin login
     public function create()
     {
         return view('admin.sessions.create');
@@ -31,5 +32,28 @@ class SessionsController extends Controller
     {
         auth()->logout();
         return redirect('/admin/login');
+    }
+
+    // client login
+    public function clientCreate()
+    {
+        return view('client.sessions.create');
+    }
+
+    public function clientStore()
+    {
+        if (! auth()->attempt(request(['email', 'password']))) {
+            return back()->withErrors([
+                'message' => 'Please check your credentials and try again.'
+            ]);
+        }
+
+        return redirect()->route('clientDashboard');
+    }
+
+    public function clientDestroy()
+    {
+        auth()->logout();
+        return redirect('/client/login');
     }
 }
