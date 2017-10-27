@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <form method="POST" action="{{ url('admin/equipment') }}" class="col s12">
+        <form method="POST" action="{{ url('admin/equipment',$current_category->id) }}" class="col s12">
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col s6">
