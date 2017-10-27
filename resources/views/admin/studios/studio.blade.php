@@ -71,32 +71,34 @@
                 </div>
             </div>
             @endforeach
-            <div class="col s6 m4 card blue-grey darken-1" style="padding: 15px;">
-                <form action="{{ url('admin/studios',$studio->id) }}/add-photo" method="post" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="input-field">
-                        <input id="name" type="text" class="validate" name="name">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="input-field">
-                        <input id="caption" type="text" class="validate" name="caption">
-                        <label for="caption">Caption</label>
-                    </div>
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>File</span>
-                            <input name="url" type="file">
+            <div class="col s6 m4" style="">
+                <div class="card blue-grey darken-1" style="padding: 15px;">
+                    <form action="{{ url('admin/studios',$studio->id) }}/add-photo" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="input-field">
+                            <input id="name" type="text" class="validate" name="name">
+                            <label for="name">Name</label>
                         </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                        <div class="input-field">
+                            <input id="caption" type="text" class="validate" name="caption">
+                            <label for="caption">Caption</label>
                         </div>
-                    </div>
-                    <input hidden name="studio_id" value="{{$studio->id}}">
-                    <button class="btn waves-effect waves-light" type="submit">
-                        Add photo
-                        <i class="material-icons right">add</i>
-                    </button>
-                </form>
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input name="url" type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <input hidden name="studio_id" value="{{$studio->id}}">
+                        <button class="btn waves-effect waves-light" type="submit">
+                            Add photo
+                            <i class="material-icons right">add</i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -202,7 +204,7 @@
                         {{ csrf_field() }}
                         <div class="input-field col s12">
                             <select name="package_id">
-                                <option value="" disabled selected>Equipment:</option>
+                                <option value="" disabled selected>Package:</option>
                                 @foreach ($otherPackages as $package)
                                     <option value="{{ $package->id }}">{{ $package->name }}</option>
                                 @endforeach
