@@ -13,7 +13,8 @@ class StudiosController extends Controller
 {
     public function index()
     {
-        $studios = Studio::latest()->get();
+        $studios = Studio::with('photo')->oldest()->get();
+        // $studioPhoto = $studios->photo->first();
         
         return view('admin.studios.index', compact('studios'));
     }
@@ -44,15 +45,13 @@ class StudiosController extends Controller
             'name'          => 'required|unique:studios,name',
             'info'          => 'required',
             'specs'         => 'required',
-            'cover_photo'   => '',
-            'photos'        => '',
             'location'      => 'required',
             'assistance'    => ''
             
         ]);
 
         // gather data and add it to the database
-        studio::create(request(['name', 'info', 'specs', 'cover_photo', 'photos', 'location', 'assistance']));
+        studio::create(request(['name', 'info', 'specs', 'location', 'assistance']));
 
         //then redirect to the home page
         return redirect('/admin/studios');
