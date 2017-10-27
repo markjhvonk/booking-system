@@ -26,7 +26,7 @@
                     <label for="specs">Specs (seperated by ,)</label>
                 </div>
             </div>
-            <div class="row">
+            {{--  <div class="row">
                 <div class="file-field input-field col s6">
                     <div class="btn">
                         <span>File</span>
@@ -45,7 +45,7 @@
                         <input class="file-path validate" type="text" placeholder="Other photos">
                     </div>
                 </div>
-            </div>
+            </div>  --}}
             <div class="row">
                 <div class="input-field col s6">
                     <input name="location" id="location" type="text" class="validate">
