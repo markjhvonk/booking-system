@@ -23,7 +23,7 @@ class EquipmentController extends Controller
         return view('admin.equipment.create', compact('categories','current_category'));
     }
 
-    public function store()
+    public function store(Category $current_category)
     {
         $this->validate(request(), [
             'name'          => 'required|unique:equipment,name',
@@ -38,7 +38,8 @@ class EquipmentController extends Controller
         equipment::create(request(['name', 'description', 'data', 'price', 'category_id']));
 
         //then redirect to the home page
-        return redirect('/admin/equipment');
+        // return redirect('/admin/equipment');
+        return redirect()->route('equipmentCategory', ['current_category' => $current_category->id]);
     }
 
     public function category(Category $current_category)
