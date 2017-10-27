@@ -76,7 +76,7 @@ Route::middleware(['editor'])->group(function () {
     Route::post('/admin/equipment/package/{package}/remove-equipment/{equipment_id}', 'PackagesController@removeEquipment');   // remove equipment
 
     // Users routing
-    Route::get('/admin/users', 'UsersController@index');                // display all users
+    Route::get('/admin/users', 'UsersController@index');            // display all users
     Route::post('/admin/users/search', 'UsersController@search');   // search equipment
 
 });
@@ -84,8 +84,15 @@ Route::middleware(['editor'])->group(function () {
 
 Route::middleware(['client'])->group(function () {
 
-    // Client dashboard
-    Route::get('/client', 'ClientController@index')->name('clientDashboard');
+    Route::get('/client', 'ClientController@index')->name('clientDashboard'); // Client dashboard
+
+    // Client profile
+    Route::get('/client/edit', 'ClientController@editAccount');     // edit client account
+    Route::patch('/client/edit/{user}', 'ClientController@updateAccount'); // update client account
+
+    // Client bookings
+    Route::get('/client/booking/{booking}', 'BookingController@booking');       // edit client account
+    Route::delete('/client/booking/{booking}', 'BookingController@delete');     // edit client account
 
 });
 
