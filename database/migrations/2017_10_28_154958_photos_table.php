@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EquipmentPackageTable extends Migration
+class PhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class EquipmentPackageTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipment_package', function (Blueprint $table) {
-            $table->integer('equipment_id');
-            $table->integer('package_id');
+        Schema::create('photos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('caption');
+            $table->longtext('file_name');
+            $table->longtext('url');
+            $table->integer('studio_id');
         });
     }
 

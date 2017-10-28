@@ -17,7 +17,7 @@ class PackageTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longtext('description');
-            $table->integer('category');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }

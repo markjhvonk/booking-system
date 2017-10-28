@@ -18,9 +18,9 @@ class StudiosTable extends Migration
             $table->string('name');
             $table->longtext('info');
             $table->longtext('specs');
-            $table->string('cover_photo');
             $table->string('location');
             $table->boolean('assistance');
+            $table->boolean('visible');
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class BookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('studio');
-            $table->integer('user');
-            $table->timestamp('date');
+            $table->string('studio_id');
+            $table->integer('user_id');
+            $table->date('date');
             $table->string('time_frame');
             $table->boolean('selected_assistance');
             $table->longtext('notes');
