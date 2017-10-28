@@ -12,6 +12,7 @@
     </div>
     <div class="row">
         <div class="col s12 m12">
+            @if(Auth::user()->role == 1)
             <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/create',$current_category->id) }}">new item</a>
             <a class="waves-effect waves-light btn" href="{{ url('admin/equipment/package/create',$current_category->id) }}">new kit</a>
             <form method="POST" action="{{ url('admin/equipment/category',$current_category->id) }}" class="right" style="display: inline-block; margin: 0 0 0 5px">
@@ -19,6 +20,9 @@
                 <button class="waves-effect waves-light btn red">delete</button>
             </form>
             <a class="waves-effect waves-light btn right blue" href="{{ url('admin/equipment/category',$current_category->id) }}/edit">edit</a>
+            @else
+            <a class="waves-effect waves-light btn right blue" href="{{ url('admin/equipment/category',$current_category->id) }}/edit">edit</a>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -105,11 +109,13 @@
                             <td>{{ $equipment->category->name }}</td>
                             <td class="right-align">
                                 <a class="blue-text" href="{{ url('admin/equipment',$equipment->id) }}/edit"><i class="material-icons">edit</i></a>
+                                @if(Auth::user()->role == 1)
                                 <form method="POST" action="{{ url('admin/equipment',$equipment->id) }}" style="display: inline-block;">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button class="red-text clear-btn" type="submit"><i class="material-icons">delete</i></button>
                                 </form>
+                                @endif
                                 <form method="POST" action="{{ url('admin/equipment',$equipment->id) }}/visible" style="display: inline-block;">
                                     {{ method_field('PATCH') }}
                                     {{ csrf_field() }}

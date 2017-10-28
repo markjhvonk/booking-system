@@ -42,11 +42,13 @@
             </button>
             @endif
         </form>
+        @if(Auth::user()->role == 1)
         <form method="POST" action="{{ url('admin/studios',$studio->id) }}" style="display: inline-block;">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
             <button class="waves-effect waves-light btn red"><i class="material-icons right">delete</i>delete</button>
         </form>
+        @endif
     </div>
     <div class="row">
         <p>{{$studio->info}}</p>

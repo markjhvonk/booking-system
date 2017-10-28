@@ -4,11 +4,13 @@
     <div class="row">
         <h1>Users</h1>
     </div>
+    @if(Auth::user()->role == 1)
     <div class="row">
         <div class="col s12 m12">
             <a class="waves-effect waves-light btn" href="{{ url('admin/users/register') }}">new user</a>
         </div>
     </div>
+    @endif
     <div class="row" style="margin-bottom: 0;">
         <form class="col s12 valign-wrapper" action="{{ url('/admin/users/search') }}" method="post" style="margin-bottom: 0;">
             {{ csrf_field() }}
@@ -55,12 +57,14 @@
                         @endif
                     </td>
                     <td>
+                        @if(Auth::user()->role == 1)
                         <a class="blue-text" href="{{ url('admin/users',$user->id) }}/edit"><i class="material-icons">edit</i></a>
                         <form method="POST" action="{{ url('admin/users',$user->id) }}" style="display: inline-block;">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button class="red-text clear-btn" type="submit"><i class="material-icons">delete</i></button>
                         </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
