@@ -17,7 +17,7 @@ Route::middleware(['editor'])->group(function () {
 
         // Equipment related routing
         Route::get('/admin/equipment/create/{current_category?}', 'EquipmentController@create');    // create equipment item
-        Route::post('/admin/equipment/{current_category?}', 'EquipmentController@store');                               // submit equipment item
+        Route::post('/admin/equipment/{current_category?}', 'EquipmentController@store');           // submit equipment item
         Route::delete('/admin/equipment/{equipment}', 'EquipmentController@delete');                // delete equipment item
 
         // Category routing
